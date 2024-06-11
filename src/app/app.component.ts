@@ -7,6 +7,7 @@ import { SeparadorComponent } from './componentes/separador/separador.component'
 import { ContatoComponent } from './componentes/contato/contato.component';
 import { FormsModule } from '@angular/forms';
 import agenda from '../agenda.json'
+import { FormularioComponent } from './paginas/formulario/formulario.component';
 
 interface Contato {
   id: number
@@ -24,6 +25,7 @@ interface Contato {
     CabecalhoComponent, 
     SeparadorComponent,
     ContatoComponent,
+    FormularioComponent,
     FormsModule
   ],
   templateUrl: './app.component.html',
