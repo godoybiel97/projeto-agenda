@@ -25,6 +25,10 @@ header .cabecalho-link button {
   background: none;
 }
 
+header .cabecalho-link button:hover {
+  transform: scale(1.1);
+}
+
 header .cabecalho-link a {
   text-decoration: none;
   font-family: 'Montserrat';
