@@ -17,8 +17,9 @@ export class ContatoService {
     const contatosLSS = localStorage.getItem("contatos")
     const contatosLS = contatosLSS ? JSON.parse(contatosLSS) : null
 
-    this.contatos = contatosLS || null
-    localStorage.setItem("contatos", JSON.stringify(this.contatos))
+    if (contatosLS !== null) {
+      this.contatos = contatosLS || null;
+    }
    }
 
    obterContatos() {
