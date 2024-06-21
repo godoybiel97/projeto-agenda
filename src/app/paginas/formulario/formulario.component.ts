@@ -5,6 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule, NgClass } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ContatoService } from '../../services/contato.service';
+import { PerfilContatoComponent } from '../perfil-contato/perfil-contato.component';
 
 @Component({
   selector: 'app-formulario',
@@ -12,7 +13,7 @@ import { ContatoService } from '../../services/contato.service';
   imports: [
     CommonModule,
     ContainerComponent, 
-    SeparadorComponent, 
+    SeparadorComponent,
     ReactiveFormsModule,
     RouterLink
   ],
@@ -43,9 +44,10 @@ export class FormularioComponent implements OnInit {
   salvarContato() {
     const novoContato = this.contatoForm.value
 
-    this.contatoService.salvarContato(novoContato)
-    this.contatoForm.reset()
-    this.router.navigateByUrl("/contatos")
+    this.contatoService.salvarContato(novoContato).subscribe(() => {
+      this.contatoForm.reset()
+      this.router.navigateByUrl("/contatos")
+    })
   }
 
   cancelar() {
