@@ -35,7 +35,9 @@ export class ContatosComponent implements OnInit {
   constructor(private contatoService: ContatoService) {}
 
   ngOnInit(): void {
-    this.contatos = this.contatoService.obterContatos()
+    this.contatoService.obterContatos().subscribe(listaContatos => {
+      this.contatos = listaContatos
+    })
   }
 
   private removerAcentos(texto: string): string {
