@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ContainerComponent } from '../../componentes/container/container.component';
 import { SeparadorComponent } from '../../componentes/separador/separador.component';
 import { Contato } from '../../componentes/contato/contato';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ContatoService } from '../../services/contato.service';
 
 @Component({
   selector: 'app-perfil-contato',
@@ -18,14 +19,35 @@ import { RouterLink } from '@angular/router';
   styleUrl: './perfil-contato.component.css'
 })
 
-export class PerfilContatoComponent {
+export class PerfilContatoComponent implements OnInit {
   contato: Contato = {
     id: 0,
-    nome: "Gabriel",
-    telefone: "(11)95277-3857",
-    email: "gabriel@gmail.com",
-    aniversario: "23/02/1997",
+    nome: "",
+    telefone: "",
+    email: "",
+    aniversario: "",
     redes: "",
     observacoes: ""
+  }
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private contatoService: ContatoService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    const id = this.activatedRoute.snapshot.paramMap.get("id")
+    this.contatoService.buscarPorId(parseInt(id!)).subscribe((contato) => {
+      this.contato = contato
+    })
+  }
+
+  excluir() {
+    if(this.contato.id) {
+      this.contatoService.excluirContato(this.contato.id).subscribe(() => {
+        this.router.navigateByUrl("/contatos")
+      })
+    }
   }
 }
