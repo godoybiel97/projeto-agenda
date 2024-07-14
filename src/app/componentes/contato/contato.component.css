@@ -25,3 +25,13 @@
 .contato ul li button:hover {
     transform: scale(1.2);
 }
+
+.contato ul img {
+  cursor: pointer;
+}
+
+.contato .avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
